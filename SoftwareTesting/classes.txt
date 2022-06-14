@@ -1,0 +1,2 @@
+com.alibaba.json.bvt.jsonpatch.JSONPatchTest_0
+com.alibaba.json.bvt.MapTest2
