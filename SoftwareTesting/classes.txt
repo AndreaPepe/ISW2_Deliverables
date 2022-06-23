@@ -1,2 +1,7 @@
-com.alibaba.json.bvt.jsonpatch.JSONPatchTest_0
-com.alibaba.json.bvt.MapTest2
+FastJSON:
+	com.alibaba.json.bvt.jsonpatch.JSONPatchTest_0
+	com.alibaba.json.bvt.MapTest2
+
+Syncope:
+	
+	org.apache.syncope.core.spring.security.DefaultPasswordGenerator
