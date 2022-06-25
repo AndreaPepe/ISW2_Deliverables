@@ -5,3 +5,4 @@ FastJSON:
 Syncope:
 	
 	org.apache.syncope.core.spring.security.DefaultPasswordGenerator
+	org.apache.syncope.core.spring.security.Encryptor

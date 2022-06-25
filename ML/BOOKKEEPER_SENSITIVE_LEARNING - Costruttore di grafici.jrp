@@ -1,0 +1,207 @@
+﻿New Table( "BOOKKEEPER_SENSITIVE_LEARNING",
+	Add Rows( 12 ),
+	New Script(
+		["en" => "Source", "it" => "Origine"],
+		Open(
+			"$DESKTOP/git/MLforSE/BOOKKEEPER_SENSITIVE_LEARNING.csv",
+			columns(
+				New Column( "Dataset", Character, "Nominal" ),
+				New Column( "#TrainingRelease",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "%Training", Character, "Nominal" ),
+				New Column( "%DefectiveInTraining", Character, "Nominal" ),
+				New Column( "%DefectiveInTesting", Character, "Nominal" ),
+				New Column( "Classifier", Character, "Nominal" ),
+				New Column( "Balancing", Character, "Nominal" ),
+				New Column( "FeatureSelection", Character, "Nominal" ),
+				New Column( "Sensitivity", Character, "Nominal" ),
+				New Column( "TP", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "FP", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "TN", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "FN", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "Precision", Character, "Nominal" ),
+				New Column( "Recall", Character, "Nominal" ),
+				New Column( "AUC", Character, "Nominal" ),
+				New Column( "Kappa", Character, "Nominal" )
+			),
+			Import Settings(
+				End Of Line( CRLF, CR, LF ),
+				End Of Field( Other( ";" ), CSV( 0 ) ),
+				Strip Quotes( 1 ),
+				Use Apostrophe as Quotation Mark( 0 ),
+				Use Regional Settings( 0 ),
+				Scan Whole File( 1 ),
+				Treat empty columns as numeric( 0 ),
+				CompressNumericColumns( 0 ),
+				CompressCharacterColumns( 0 ),
+				CompressAllowListCheck( 0 ),
+				Labels( 1 ),
+				Column Names Start( 1 ),
+				Data Starts( 2 ),
+				Lines To Read( "All" ),
+				Year Rule( "20xx" )
+			)
+		)
+	),
+	New Column( "Dataset",
+		Character,
+		"Nominal",
+		Set Values(
+			{"BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER",
+			"BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER",
+			"BOOKKEEPER", "BOOKKEEPER"}
+		)
+	),
+	New Column( "#TrainingRelease",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values( [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4] )
+	),
+	New Column( "%Training",
+		Character,
+		"Nominal",
+		Set Values(
+			{"43,67", "43,67", "43,67", "56,44", "56,44", "56,44", "66,67", "66,67",
+			"66,67", "73,96", "73,96", "73,96"}
+		)
+	),
+	New Column( "%DefectiveInTraining",
+		Character,
+		"Nominal",
+		Set Values(
+			{"0,00", "0,00", "0,00", "15,88", "15,88", "15,88", "17,09", "17,09",
+			"17,09", "12,70", "12,70", "12,70"}
+		)
+	),
+	New Column( "%DefectiveInTesting",
+		Character,
+		"Nominal",
+		Set Values(
+			{"19,38", "19,38", "19,38", "9,00", "9,00", "9,00", "9,52", "9,52",
+			"9,52", "1,06", "1,06", "1,06"}
+		)
+	),
+	New Column( "Classifier",
+		Character,
+		"Nominal",
+		Set Values(
+			{"RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST", "NAIVE_BAYES",
+			"IBK", "RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST",
+			"NAIVE_BAYES", "IBK"}
+		)
+	),
+	New Column( "Balancing",
+		Character,
+		"Nominal",
+		Set Values(
+			{"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true"}
+		)
+	),
+	New Column( "FeatureSelection",
+		Character,
+		"Nominal",
+		Set Values(
+			{"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true"}
+		)
+	),
+	New Column( "Sensitivity",
+		Character,
+		"Nominal",
+		Set Values(
+			{"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true"}
+		)
+	),
+	New Column( "TP",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values( [0, 0, 0, 20, 27, 23, 25, 26, 27, 1, 2, 2] )
+	),
+	New Column( "FP",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values( [0, 0, 0, 101, 278, 236, 74, 33, 47, 11, 34, 22] )
+	),
+	New Column( "TN",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values( [183, 183, 183, 182, 5, 47, 249, 290, 276, 362, 339, 351] )
+	),
+	New Column( "FN",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values( [44, 44, 44, 8, 1, 5, 9, 8, 7, 3, 2, 2] )
+	),
+	New Column( "Precision",
+		Character,
+		"Nominal",
+		Set Values(
+			{"NaN", "NaN", "NaN", "0,165289", "0,088525", "0,088803", "0,252525",
+			"0,440678", "0,364865", "0,083333", "0,055556", "0,083333"}
+		)
+	),
+	New Column( "Recall",
+		Character,
+		"Nominal",
+		Set Values(
+			{"0,000000", "0,000000", "0,000000", "0,714286", "0,964286", "0,821429",
+			"0,735294", "0,764706", "0,794118", "0,250000", "0,500000", "0,500000"}
+		)
+	),
+	New Column( "AUC",
+		Character,
+		"Nominal",
+		Set Values(
+			{"0,500000", "0,338115", "0,617611", "0,795495", "0,545116", "0,487822",
+			"0,862093", "0,908441", "0,824303", "0,935992", "0,823727", "0,721180"}
+		)
+	),
+	New Column( "Kappa",
+		Character,
+		"Nominal",
+		Set Values(
+			{"0,000000", "0,000000", "0,000000", "0,143164", "-0,003307",
+			"-0,002649", "0,272841", "0,498544", "0,424949", "0,110849", "0,082477",
+			"0,126978"}
+		)
+	)
+) << Run Formulas;
+Graph Builder(
+	Variables( X( :Classifier ), Y( :Precision ), Color( :Classifier ) ),
+	Elements(
+		Box Plot(
+			X,
+			Y,
+			Legend( 2 ),
+			Box Style( "Solid" ),
+			Fences( 0 ),
+			"5 Number Summary"n( 1 )
+		)
+	),
+	SendToReport(
+		Dispatch( {"Box Plot"}, "", OutlineBox, {Close( 0 )} ),
+		Dispatch(
+			{},
+			"Classifier",
+			ScaleBox,
+			{Min( -0.631309376485147 ), Max( 2.64200949553221 ), Inc( 1 ),
+			Minor Ticks( 0 )}
+		),
+		Dispatch(
+			{},
+			"graph title",
+			TextEditBox,
+			{Set Text( "SENSITIVE LEARNING - BOOKKEEPER" )}
+		)
+	)
+);
