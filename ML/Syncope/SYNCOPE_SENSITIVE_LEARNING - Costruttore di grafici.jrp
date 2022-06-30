@@ -1,0 +1,385 @@
+﻿New Table( "SYNCOPE_SENSITIVE_LEARNING",
+	Add Rows( 78 ),
+	New Script(
+		["en" => "Source", "it" => "Origine"],
+		Open(
+			"$DESKTOP/git/ISW2_Deliverables/ML/Syncope/SYNCOPE_SENSITIVE_LEARNING.csv",
+			columns(
+				New Column( "Dataset", Character, "Nominal" ),
+				New Column( "#TrainingRelease",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "%Training",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "%DefectiveInTraining",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "%DefectiveInTesting",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "Classifier", Character, "Nominal" ),
+				New Column( "Balancing", Character, "Nominal" ),
+				New Column( "FeatureSelection", Character, "Nominal" ),
+				New Column( "Sensitivity", Character, "Nominal" ),
+				New Column( "TP", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "FP", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "TN", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "FN", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "Precision",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "Recall", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "AUC", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "Kappa", Numeric, "Continuous", Format( "Best", 12 ) )
+			),
+			Import Settings(
+				End Of Line( CRLF, CR, LF ),
+				End Of Field( Other( "0x3b" ), CSV( 0 ) ),
+				Strip Quotes( 1 ),
+				Use Apostrophe as Quotation Mark( 0 ),
+				Use Regional Settings( 0 ),
+				Scan Whole File( 1 ),
+				Treat empty columns as numeric( 0 ),
+				CompressNumericColumns( 0 ),
+				CompressCharacterColumns( 0 ),
+				CompressAllowListCheck( 0 ),
+				Labels( 1 ),
+				Column Names Start( 1 ),
+				Data Starts( 2 ),
+				Lines To Read( "All" ),
+				Year Rule( "20xx" )
+			)
+		)
+	),
+	New Column( "Dataset",
+		Character,
+		"Nominal",
+		Set Values(
+			{"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE",
+			"SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE", "SYNCOPE"}
+		)
+	),
+	New Column( "#TrainingRelease",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 8,
+			9, 9, 9, 10, 10, 10, 11, 11, 11, 12, 12, 12, 13, 13, 13, 14, 14, 14, 15,
+			15, 15, 16, 16, 16, 17, 17, 17, 18, 18, 18, 19, 19, 19, 20, 20, 20, 21,
+			21, 21, 22, 22, 22, 23, 23, 23, 24, 24, 24, 25, 25, 25, 26, 26, 26]
+		)
+	),
+	New Column( "%Training",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[49.95, 49.95, 49.95, 66.55, 66.55, 66.55, 74.94, 74.94, 74.94, 79.03,
+			79.03, 79.03, 80.83, 80.83, 80.83, 83.14, 83.14, 83.14, 85.3, 85.3, 85.3,
+			87.03, 87.03, 87.03, 88.52, 88.52, 88.52, 89.68, 89.68, 89.68, 90.61,
+			90.61, 90.61, 91.37, 91.37, 91.37, 92.09, 92.09, 92.09, 92.58, 92.58,
+			92.58, 93.17, 93.17, 93.17, 93.6, 93.6, 93.6, 93.23, 93.23, 93.23, 93.6,
+			93.6, 93.6, 93.87, 93.87, 93.87, 94.18, 94.18, 94.18, 94.18, 94.18,
+			94.18, 93.46, 93.46, 93.46, 93.23, 93.23, 93.23, 95.11, 95.11, 95.11,
+			91.96, 91.96, 91.96, 93.27, 93.27, 93.27]
+		)
+	),
+	New Column( "%DefectiveInTraining",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0, 0, 0, 0.41, 0.41, 0.41, 0.27, 0.27, 0.27, 0.2, 0.2, 0.2, 0.16, 0.16,
+			0.16, 0.2, 0.2, 0.2, 1.22, 1.22, 1.22, 1.89, 1.89, 1.89, 1.65, 1.65,
+			1.65, 1.46, 1.46, 1.46, 1.39, 1.39, 1.39, 1.52, 1.52, 1.52, 1.4, 1.4,
+			1.4, 6.44, 6.44, 6.44, 11.22, 11.22, 11.22, 14.95, 14.95, 14.95, 14.02,
+			14.02, 14.02, 13.08, 13.08, 13.08, 12.25, 12.25, 12.25, 14.74, 14.74,
+			14.74, 20.13, 20.13, 20.13, 19.7, 19.7, 19.7, 18.6, 18.6, 18.6, 17.45,
+			17.45, 17.45, 19.29, 19.29, 19.29, 17.88, 17.88, 17.88]
+		)
+	),
+	New Column( "%DefectiveInTesting",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0.2, 0.2, 0.2, 0, 0, 0, 0, 0, 0, 0.38, 0.38, 0.38, 10.02, 10.02, 10.02,
+			7.54, 7.54, 7.54, 5.34, 5.34, 5.34, 18.42, 18.42, 18.42, 2.94, 2.94,
+			2.94, 3.4, 3.4, 3.4, 2.92, 2.92, 2.92, 54.13, 54.13, 54.13, 54.99, 54.99,
+			54.99, 59.03, 59.03, 59.03, 0.46, 0.46, 0.46, 0.15, 0.15, 0.15, 56.49,
+			56.49, 56.49, 54.22, 54.22, 54.22, 54.52, 54.52, 54.52, 12.76, 12.76,
+			12.76, 1.84, 1.84, 1.84, 21.81, 21.81, 21.81, 23.85, 23.85, 23.85, 3.02,
+			3.02, 3.02, 0.54, 0.54, 0.54, 0.08, 0.08, 0.08]
+		)
+	),
+	New Column( "Classifier",
+		Character,
+		"Nominal",
+		Set Values(
+			{"RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST", "NAIVE_BAYES",
+			"IBK", "RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST",
+			"NAIVE_BAYES", "IBK", "RANDOM_FOREST", "NAIVE_BAYES", "IBK",
+			"RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST", "NAIVE_BAYES",
+			"IBK", "RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST",
+			"NAIVE_BAYES", "IBK", "RANDOM_FOREST", "NAIVE_BAYES", "IBK",
+			"RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST", "NAIVE_BAYES",
+			"IBK", "RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST",
+			"NAIVE_BAYES", "IBK", "RANDOM_FOREST", "NAIVE_BAYES", "IBK",
+			"RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST", "NAIVE_BAYES",
+			"IBK", "RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST",
+			"NAIVE_BAYES", "IBK", "RANDOM_FOREST", "NAIVE_BAYES", "IBK",
+			"RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST", "NAIVE_BAYES",
+			"IBK", "RANDOM_FOREST", "NAIVE_BAYES", "IBK", "RANDOM_FOREST",
+			"NAIVE_BAYES", "IBK", "RANDOM_FOREST", "NAIVE_BAYES", "IBK",
+			"RANDOM_FOREST", "NAIVE_BAYES", "IBK"}
+		)
+	),
+	New Column( "Balancing",
+		Character,
+		"Nominal",
+		Set Values(
+			{"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true"}
+		)
+	),
+	New Column( "FeatureSelection",
+		Character,
+		"Nominal",
+		Set Values(
+			{"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true"}
+		)
+	),
+	New Column( "Sensitivity",
+		Character,
+		"Nominal",
+		Set Values(
+			{"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true", "true", "true", "true"}
+		)
+	),
+	New Column( "TP",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 9, 9, 119,
+			115, 115, 0, 0, 17, 1, 0, 1, 3, 0, 0, 167, 62, 29, 264, 64, 130, 385,
+			378, 351, 2, 2, 2, 1, 1, 1, 342, 357, 66, 15, 7, 29, 11, 0, 17, 41, 40,
+			40, 1, 0, 0, 14, 0, 14, 22, 14, 21, 22, 22, 22, 4, 2, 5, 1, 0, 1]
+		)
+	),
+	New Column( "FP",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0, 0, 0, 0, 0, 0, 39, 62, 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 102, 101, 95,
+			378, 366, 338, 17, 27, 316, 60, 11, 179, 109, 134, 92, 113, 5, 8, 50, 60,
+			41, 61, 2, 56, 421, 377, 440, 383, 375, 415, 16, 29, 27, 2, 0, 21, 2, 0,
+			11, 383, 379, 376, 445, 449, 462, 0, 0, 0, 3, 0, 3, 0, 0, 0, 309, 84,
+			294, 320, 56, 289]
+		)
+	),
+	New Column( "TN",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[489, 489, 489, 492, 492, 492, 453, 430, 453, 519, 519, 519, 530, 530,
+			530, 576, 576, 576, 501, 502, 508, 149, 161, 189, 610, 600, 311, 565,
+			614, 446, 522, 497, 539, 187, 295, 292, 243, 233, 252, 209, 268, 214,
+			227, 271, 208, 268, 276, 236, 306, 293, 295, 340, 342, 321, 345, 347,
+			336, 287, 291, 294, 356, 352, 339, 767, 767, 767, 827, 830, 827, 802,
+			802, 802, 1162, 1387, 1177, 1007, 1271, 1038]
+		)
+	),
+	New Column( "FN",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[1, 1, 1, 0, 0, 0, 0, 0, 0, 2, 2, 2, 59, 59, 59, 47, 47, 47, 24, 25, 25,
+			0, 4, 4, 19, 19, 2, 21, 22, 21, 16, 19, 19, 187, 292, 325, 94, 294, 228,
+			4, 11, 38, 1, 1, 1, 0, 0, 0, 76, 61, 352, 390, 398, 376, 405, 416, 399,
+			57, 58, 58, 14, 15, 15, 200, 214, 200, 238, 246, 239, 3, 3, 3, 4, 6, 3,
+			0, 1, 0]
+		)
+	),
+	New Column( "Precision",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[., ., ., ., ., ., 0, 0, 0, ., ., ., ., ., ., ., ., ., 0.089286,
+			0.081818, 0.086538, 0.239437, 0.239085, 0.253863, 0, 0, 0.051051,
+			0.016393, 0, 0.005556, 0.026786, 0, 0, 0.596429, 0.925373, 0.783784,
+			0.840764, 0.516129, 0.760234, 0.863229, 0.994737, 0.862408, 0.004728,
+			0.005277, 0.004525, 0.002604, 0.00266, 0.002404, 0.955307, 0.92487,
+			0.709677, 0.882353, 1, 0.58, 0.846154, ., 0.607143, 0.096698, 0.095465,
+			0.096154, 0.002242, 0, 0, 1, ., 1, 0.88, 1, 0.875, 1, 1, 1, 0.01278,
+			0.023256, 0.016722, 0.003115, 0, 0.003448]
+		)
+	),
+	New Column( "Recall",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0, 0, 0, ., ., ., ., ., ., 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.294118,
+			0.264706, 0.264706, 1, 0.966387, 0.966387, 0, 0, 0.894737, 0.045455, 0,
+			0.045455, 0.157895, 0, 0, 0.471751, 0.175141, 0.081921, 0.73743,
+			0.178771, 0.363128, 0.989717, 0.971722, 0.902314, 0.666667, 0.666667,
+			0.666667, 1, 1, 1, 0.818182, 0.854067, 0.157895, 0.037037, 0.017284,
+			0.071605, 0.026442, 0, 0.040865, 0.418367, 0.408163, 0.408163, 0.066667,
+			0, 0, 0.065421, 0, 0.065421, 0.084615, 0.053846, 0.080769, 0.88, 0.88,
+			0.88, 0.5, 0.25, 0.625, 1, 0, 1]
+		)
+	),
+	New Column( "AUC",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0.5, 0.993865, 0.871166, ., ., ., ., ., ., 0.5, 0.300578, 0.751927, 0.5,
+			0.206764, 0.820371, 0.5, 0.243406, 0.736462, 0.563116, 0.511023,
+			0.553531, 0.763837, 0.69374, 0.66251, 0.791069, 0.623772, 0.695375,
+			0.413418, 0.188945, 0.379527, 0.610601, 0.182584, 0.4271, 0.707787,
+			0.856756, 0.527627, 0.847637, 0.673232, 0.613162, 0.976769, 0.995354,
+			0.890441, 0.489455, 0.750257, 0.486626, 0.735791, 0.993856, 0.680492,
+			0.946971, 0.942238, 0.856924, 0.582637, 0.943174, 0.906054, 0.90969,
+			0.482463, 0.906167, 0.464484, 0.479089, 0.39406, 0.396005, 0.26392,
+			0.306492, 0.531909, 0.533828, 0.52847, 0.548318, 0.538869, 0.538327,
+			0.94, 0.94, 0.94, 0.682826, 0.657121, 0.698122, 0.798041, 0.810098,
+			0.899397]
+		)
+	),
+	New Column( "Kappa",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.06001, 0.047313,
+			0.054358, 0.126809, 0.12486, 0.155775, -0.028571, -0.035762, 0.043355,
+			-0.027246, -0.023195, -0.053969, -0.004401, -0.053965, -0.050922,
+			0.093329, 0.147698, 0.051133, 0.559159, -0.024249, 0.210973, 0.789278,
+			0.959423, 0.702065, 0.00024, 0.001339, -0.000167, 0.002142, 0.002253,
+			0.001741, 0.752393, 0.755384, 0.066353, 0.02866, 0.015849, 0.009439,
+			0.018862, 0, 0.008387, -0.063337, -0.065678, -0.06416, -0.032382,
+			-0.036889, -0.036923, 0.09866, 0, 0.09866, 0.117453, 0.079758, 0.112091,
+			0.934311, 0.934311, 0.934311, 0.014527, 0.032982, 0.022272, 0.004717,
+			-0.001482, 0.00538]
+		)
+	)
+) << Run Formulas;
+Graph Builder(
+	Size( 1399, 694 ),
+	Show Control Panel( 0 ),
+	Variables(
+		X( :Classifier ),
+		Y( :Precision ),
+		Y( :Recall, Position( 1 ) ),
+		Y( :AUC, Position( 1 ) ),
+		Y( :Kappa, Position( 1 ) )
+	),
+	Elements(
+		Box Plot(
+			X,
+			Y( 1 ),
+			Y( 2 ),
+			Y( 3 ),
+			Y( 4 ),
+			Legend( 4 ),
+			Box Style( "Solid" )
+		)
+	),
+	SendToReport(
+		Dispatch( {}, "Classifier", ScaleBox, {Label Row( Set Font Size( 14 ) )} ),
+		Dispatch(
+			{},
+			"400",
+			ScaleBox,
+			{Legend Model(
+				4,
+				Properties(
+					0,
+					{Line Color( -4354269 ), Fill Color( -4354269 )},
+					Item ID( "Precision", 1 )
+				),
+				Properties(
+					1,
+					{Line Color( -13912408 ), Fill Color( -13912408 )},
+					Item ID( "Recall", 1 )
+				),
+				Properties(
+					2,
+					{Line Color( -4042310 ), Fill Color( -4042310 )},
+					Item ID( "AUC", 1 )
+				),
+				Properties(
+					3,
+					{Line Color( -10628061 ), Fill Color( -10628061 )},
+					Item ID( "Kappa", 1 )
+				)
+			)}
+		),
+		Dispatch(
+			{},
+			"graph title",
+			TextEditBox,
+			{Set Font Size( 20 ), Set Text( "Syncope - Sensitive Learning" )}
+		),
+		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 14 )} ),
+		Dispatch(
+			{},
+			"Y title",
+			TextEditBox,
+			{Set Font Size( 14 ), Set Text( "Precision, Recall, AUC, Kappa" )}
+		),
+		Dispatch( {}, "400", LegendBox, {font( "Segoe UI", 14, "Plain" )} )
+	)
+);

@@ -3,6 +3,9 @@ FastJSON:
 	com.alibaba.json.bvt.MapTest2
 
 Syncope:
-	
 	org.apache.syncope.core.spring.security.DefaultPasswordGenerator
 	org.apache.syncope.core.spring.security.Encryptor
+
+BookKeeper:
+	org.apache.bookkeeper.client.BookKeeper
+	org.apache.bookkeeper.net.NetworkTopologyImpl

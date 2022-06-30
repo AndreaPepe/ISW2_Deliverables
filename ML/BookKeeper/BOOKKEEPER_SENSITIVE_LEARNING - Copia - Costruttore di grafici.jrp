@@ -1,9 +1,9 @@
-﻿New Table( "BOOKKEEPER_SENSITIVE_LEARNING",
+﻿New Table( "BOOKKEEPER_SENSITIVE_LEARNING - Copia",
 	Add Rows( 12 ),
 	New Script(
 		["en" => "Source", "it" => "Origine"],
 		Open(
-			"$DESKTOP/git/MLforSE/BOOKKEEPER_SENSITIVE_LEARNING.csv",
+			"$DESKTOP/git/ISW2_Deliverables/ML/BookKeeper/BOOKKEEPER_SENSITIVE_LEARNING - Copia.csv",
 			columns(
 				New Column( "Dataset", Character, "Nominal" ),
 				New Column( "#TrainingRelease",
@@ -11,9 +11,21 @@
 					"Continuous",
 					Format( "Best", 12 )
 				),
-				New Column( "%Training", Character, "Nominal" ),
-				New Column( "%DefectiveInTraining", Character, "Nominal" ),
-				New Column( "%DefectiveInTesting", Character, "Nominal" ),
+				New Column( "%Training",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "%DefectiveInTraining",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "%DefectiveInTesting",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
 				New Column( "Classifier", Character, "Nominal" ),
 				New Column( "Balancing", Character, "Nominal" ),
 				New Column( "FeatureSelection", Character, "Nominal" ),
@@ -22,14 +34,18 @@
 				New Column( "FP", Numeric, "Continuous", Format( "Best", 12 ) ),
 				New Column( "TN", Numeric, "Continuous", Format( "Best", 12 ) ),
 				New Column( "FN", Numeric, "Continuous", Format( "Best", 12 ) ),
-				New Column( "Precision", Character, "Nominal" ),
-				New Column( "Recall", Character, "Nominal" ),
-				New Column( "AUC", Character, "Nominal" ),
-				New Column( "Kappa", Character, "Nominal" )
+				New Column( "Precision",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "Recall", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "AUC", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "Kappa", Numeric, "Continuous", Format( "Best", 12 ) )
 			),
 			Import Settings(
 				End Of Line( CRLF, CR, LF ),
-				End Of Field( Other( ";" ), CSV( 0 ) ),
+				End Of Field( Other( "0x3b" ), CSV( 0 ) ),
 				Strip Quotes( 1 ),
 				Use Apostrophe as Quotation Mark( 0 ),
 				Use Regional Settings( 0 ),
@@ -62,27 +78,28 @@
 		Set Values( [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4] )
 	),
 	New Column( "%Training",
-		Character,
-		"Nominal",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
 		Set Values(
-			{"43,67", "43,67", "43,67", "56,44", "56,44", "56,44", "66,67", "66,67",
-			"66,67", "73,96", "73,96", "73,96"}
+			[43.67, 43.67, 43.67, 56.44, 56.44, 56.44, 66.67, 66.67, 66.67, 73.96,
+			73.96, 73.96]
 		)
 	),
 	New Column( "%DefectiveInTraining",
-		Character,
-		"Nominal",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
 		Set Values(
-			{"0,00", "0,00", "0,00", "15,88", "15,88", "15,88", "17,09", "17,09",
-			"17,09", "12,70", "12,70", "12,70"}
+			[0, 0, 0, 15.88, 15.88, 15.88, 17.09, 17.09, 17.09, 12.7, 12.7, 12.7]
 		)
 	),
 	New Column( "%DefectiveInTesting",
-		Character,
-		"Nominal",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
 		Set Values(
-			{"19,38", "19,38", "19,38", "9,00", "9,00", "9,00", "9,52", "9,52",
-			"9,52", "1,06", "1,06", "1,06"}
+			[19.38, 19.38, 19.38, 9, 9, 9, 9.52, 9.52, 9.52, 1.06, 1.06, 1.06]
 		)
 	),
 	New Column( "Classifier",
@@ -143,65 +160,106 @@
 		Set Values( [44, 44, 44, 8, 1, 5, 9, 8, 7, 3, 2, 2] )
 	),
 	New Column( "Precision",
-		Character,
-		"Nominal",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
 		Set Values(
-			{"NaN", "NaN", "NaN", "0,165289", "0,088525", "0,088803", "0,252525",
-			"0,440678", "0,364865", "0,083333", "0,055556", "0,083333"}
+			[0, 0, 0, 0.165289, 0.088525, 0.088803, 0.252525, 0.440678, 0.364865,
+			0.083333, 0.055556, 0.083333]
 		)
 	),
 	New Column( "Recall",
-		Character,
-		"Nominal",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
 		Set Values(
-			{"0,000000", "0,000000", "0,000000", "0,714286", "0,964286", "0,821429",
-			"0,735294", "0,764706", "0,794118", "0,250000", "0,500000", "0,500000"}
+			[0, 0, 0, 0.714286, 0.964286, 0.821429, 0.735294, 0.764706, 0.794118,
+			0.25, 0.5, 0.5]
 		)
 	),
 	New Column( "AUC",
-		Character,
-		"Nominal",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
 		Set Values(
-			{"0,500000", "0,338115", "0,617611", "0,795495", "0,545116", "0,487822",
-			"0,862093", "0,908441", "0,824303", "0,935992", "0,823727", "0,721180"}
+			[0.5, 0.338115, 0.617611, 0.795495, 0.545116, 0.487822, 0.862093,
+			0.908441, 0.824303, 0.935992, 0.823727, 0.72118]
 		)
 	),
 	New Column( "Kappa",
-		Character,
-		"Nominal",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
 		Set Values(
-			{"0,000000", "0,000000", "0,000000", "0,143164", "-0,003307",
-			"-0,002649", "0,272841", "0,498544", "0,424949", "0,110849", "0,082477",
-			"0,126978"}
+			[0, 0, 0, 0.143164, -0.003307, -0.002649, 0.272841, 0.498544, 0.424949,
+			0.110849, 0.082477, 0.126978]
 		)
 	)
 ) << Run Formulas;
 Graph Builder(
-	Variables( X( :Classifier ), Y( :Precision ), Color( :Classifier ) ),
+	Size( 1399, 694 ),
+	Show Control Panel( 0 ),
+	Variables(
+		X( :Classifier ),
+		Y( :Precision ),
+		Y( :Recall, Position( 1 ) ),
+		Y( :AUC, Position( 1 ) ),
+		Y( :Kappa, Position( 1 ) )
+	),
 	Elements(
 		Box Plot(
 			X,
-			Y,
-			Legend( 2 ),
-			Box Style( "Solid" ),
-			Fences( 0 ),
-			"5 Number Summary"n( 1 )
+			Y( 1 ),
+			Y( 2 ),
+			Y( 3 ),
+			Y( 4 ),
+			Legend( 6 ),
+			Box Style( "Solid" )
 		)
 	),
 	SendToReport(
-		Dispatch( {"Box Plot"}, "", OutlineBox, {Close( 0 )} ),
+		Dispatch( {}, "Classifier", ScaleBox, {Label Row( Set Font Size( 14 ) )} ),
 		Dispatch(
 			{},
-			"Classifier",
+			"400",
 			ScaleBox,
-			{Min( -0.631309376485147 ), Max( 2.64200949553221 ), Inc( 1 ),
-			Minor Ticks( 0 )}
+			{Legend Model(
+				6,
+				Properties(
+					0,
+					{Line Color( -4354269 ), Fill Color( -4354269 )},
+					Item ID( "Precision", 1 )
+				),
+				Properties(
+					1,
+					{Line Color( -13912408 ), Fill Color( -13912408 )},
+					Item ID( "Recall", 1 )
+				),
+				Properties(
+					2,
+					{Line Color( -4042310 ), Fill Color( -4042310 )},
+					Item ID( "AUC", 1 )
+				),
+				Properties(
+					3,
+					{Line Color( -10628061 ), Fill Color( -10628061 )},
+					Item ID( "Kappa", 1 )
+				)
+			)}
 		),
 		Dispatch(
 			{},
 			"graph title",
 			TextEditBox,
-			{Set Text( "SENSITIVE LEARNING - BOOKKEEPER" )}
-		)
+			{Set Font Size( 20 ), Set Text( "BookKeeper - Sensitive Learning" )}
+		),
+		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 14 )} ),
+		Dispatch(
+			{},
+			"Y title",
+			TextEditBox,
+			{Set Font Size( 14 ), Set Text( "Precision, Recall, AUC, Kappa" )}
+		),
+		Dispatch( {}, "400", LegendBox, {font( "Segoe UI", 14, "Plain" )} )
 	)
 );
