@@ -1,0 +1,271 @@
+﻿New Table( "BOOKKEEPER_NAIVE_BAYES_COMPARISON",
+	Add Rows( 12 ),
+	New Script(
+		["en" => "Source", "it" => "Origine"],
+		Open(
+			"$DESKTOP/git/ISW2_Deliverables/ML/BookKeeper/BOOKKEEPER_NAIVE_BAYES_COMPARISON.csv",
+			columns(
+				New Column( "Dataset", Character, "Nominal" ),
+				New Column( "#TrainingRelease",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "%Training",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "%DefectiveInTraining",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "%DefectiveInTesting",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "Classifier", Character, "Nominal" ),
+				New Column( "Balancing", Character, "Nominal" ),
+				New Column( "FeatureSelection", Character, "Nominal" ),
+				New Column( "Sensitivity", Character, "Nominal" ),
+				New Column( "TP", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "FP", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "TN", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "FN", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "Precision",
+					Numeric,
+					"Continuous",
+					Format( "Best", 12 )
+				),
+				New Column( "Recall", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "AUC", Numeric, "Continuous", Format( "Best", 12 ) ),
+				New Column( "Kappa", Numeric, "Continuous", Format( "Best", 12 ) )
+			),
+			Import Settings(
+				End Of Line( CRLF, CR, LF ),
+				End Of Field( Other( "0x3b" ), CSV( 0 ) ),
+				Strip Quotes( 1 ),
+				Use Apostrophe as Quotation Mark( 0 ),
+				Use Regional Settings( 0 ),
+				Scan Whole File( 1 ),
+				Treat empty columns as numeric( 0 ),
+				CompressNumericColumns( 0 ),
+				CompressCharacterColumns( 0 ),
+				CompressAllowListCheck( 0 ),
+				Labels( 1 ),
+				Column Names Start( 1 ),
+				Data Starts( 2 ),
+				Lines To Read( "All" ),
+				Year Rule( "20xx" )
+			)
+		)
+	),
+	New Column( "Dataset",
+		Character,
+		"Nominal",
+		Set Values(
+			{"BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER",
+			"BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER", "BOOKKEEPER",
+			"BOOKKEEPER", "BOOKKEEPER"}
+		)
+	),
+	New Column( "#TrainingRelease",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values( [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4] )
+	),
+	New Column( "%Training",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[43.67, 56.44, 66.67, 73.96, 43.67, 56.44, 66.67, 73.96, 43.67, 56.44,
+			66.67, 73.96]
+		)
+	),
+	New Column( "%DefectiveInTraining",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0, 15.88, 17.09, 12.7, 0, 15.88, 17.09, 12.7, 0, 15.88, 17.09, 12.7]
+		)
+	),
+	New Column( "%DefectiveInTesting",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[19.38, 9, 9.52, 1.06, 19.38, 9, 9.52, 1.06, 19.38, 9, 9.52, 1.06]
+		)
+	),
+	New Column( "Classifier",
+		Character,
+		"Nominal",
+		Set Values(
+			{"NAIVE_BAYES", "NAIVE_BAYES", "NAIVE_BAYES", "NAIVE_BAYES",
+			"NAIVE_BAYES", "NAIVE_BAYES", "NAIVE_BAYES", "NAIVE_BAYES",
+			"NAIVE_BAYES", "NAIVE_BAYES", "NAIVE_BAYES", "NAIVE_BAYES"}
+		)
+	),
+	New Column( "Balancing",
+		Character,
+		"Nominal",
+		Set Values(
+			{"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true"}
+		)
+	),
+	New Column( "FeatureSelection",
+		Character,
+		"Nominal",
+		Set Values(
+			{"true", "true", "true", "true", "true", "true", "true", "true", "true",
+			"true", "true", "true"}
+		)
+	),
+	New Column( "Sensitivity",
+		Character,
+		"Nominal",
+		Set Property(
+			"Value Order",
+			{Custom Order(
+				{"NO COST SENSITIVITY", "SENSITIVE THRESHOLD", "SENSITIVE LEARNING"}
+			), Common Order( 0 )}
+		),
+		Set Values(
+			{"NO COST SENSITIVITY", "NO COST SENSITIVITY", "NO COST SENSITIVITY",
+			"NO COST SENSITIVITY", "SENSITIVE THRESHOLD", "SENSITIVE THRESHOLD",
+			"SENSITIVE THRESHOLD", "SENSITIVE THRESHOLD", "SENSITIVE LEARNING",
+			"SENSITIVE LEARNING", "SENSITIVE LEARNING", "SENSITIVE LEARNING"}
+		)
+	),
+	New Column( "TP",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values( [0, 13, 26, 2, 0, 8, 21, 1, 0, 27, 26, 2] )
+	),
+	New Column( "FP",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values( [0, 26, 21, 18, 0, 9, 6, 8, 0, 278, 33, 34] )
+	),
+	New Column( "TN",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values( [183, 257, 302, 355, 183, 274, 317, 365, 183, 5, 290, 339] )
+	),
+	New Column( "FN",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values( [44, 15, 8, 2, 44, 20, 13, 3, 44, 1, 8, 2] )
+	),
+	New Column( "Precision",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0, 0.333333, 0.553191, 0.1, 0, 0.470588, 0.777778, 0.111111, 0,
+			0.088525, 0.440678, 0.055556]
+		)
+	),
+	New Column( "Recall",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0, 0.464286, 0.764706, 0.5, 0, 0.285714, 0.617647, 0.25, 0, 0.964286,
+			0.764706, 0.5]
+		)
+	),
+	New Column( "AUC",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0.338115, 0.764324, 0.922601, 0.708445, 0.5, 0.626956, 0.799536,
+			0.614276, 0.338115, 0.545116, 0.908441, 0.823727]
+		)
+	),
+	New Column( "Kappa",
+		Numeric,
+		"Continuous",
+		Format( "Best", 12 ),
+		Set Values(
+			[0, 0.31641, 0.597488, 0.151665, 0, 0.308518, 0.659847, 0.14123, 0,
+			-0.003307, 0.498544, 0.082477]
+		)
+	)
+) << Run Formulas;
+Graph Builder(
+	Size( 1135, 660 ),
+	Variables(
+		X( :Sensitivity ),
+		Y( :Precision ),
+		Y( :Recall, Position( 1 ) ),
+		Y( :AUC, Position( 1 ) ),
+		Y( :Kappa, Position( 1 ) )
+	),
+	Elements(
+		Box Plot(
+			X,
+			Y( 1 ),
+			Y( 2 ),
+			Y( 3 ),
+			Y( 4 ),
+			Legend( 2 ),
+			Box Style( "Solid" )
+		)
+	),
+	SendToReport(
+		Dispatch(
+			{},
+			"400",
+			ScaleBox,
+			{Legend Model(
+				2,
+				Properties(
+					0,
+					{Line Color( -4354269 ), Fill Color( -4354269 )},
+					Item ID( "Precision", 1 )
+				),
+				Properties(
+					1,
+					{Line Color( -13912408 ), Fill Color( -13912408 )},
+					Item ID( "Recall", 1 )
+				),
+				Properties(
+					2,
+					{Line Color( -4042310 ), Fill Color( -4042310 )},
+					Item ID( "AUC", 1 )
+				),
+				Properties(
+					3,
+					{Line Color( -10628061 ), Fill Color( -10628061 )},
+					Item ID( "Kappa", 1 )
+				)
+			)}
+		),
+		Dispatch(
+			{},
+			"graph title",
+			TextEditBox,
+			{Set Font Size( 20 ), Set Text( "BookKeeper - Naive Bayes" )}
+		),
+		Dispatch( {}, "X title", TextEditBox, {Set Font Size( 14 )} ),
+		Dispatch(
+			{},
+			"Y title",
+			TextEditBox,
+			{Set Font Size( 14 ), Set Text( "Precision, Recall, AUC, Kappa" )}
+		),
+		Dispatch( {}, "400", LegendBox, {font( "Segoe UI", 14, "Plain" )} )
+	)
+);
