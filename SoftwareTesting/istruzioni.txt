@@ -1,0 +1,33 @@
+Informazioni di compilazione ed esecuzione test - Andrea Pepe - matr. 0315903
+
+*** FastJSON ***
+Per la compilazione e il calcolo della coverage con JaCoCo, eseguire:
+	mvn verify -Pcoverage
+
+
+*** Apache Syncope ***
+Per la compilazione è necessario avere un jdk di versione almeno 11.
+Dopodiché, per eseguire la buil e calcolare la coverage con JaCoCo:
+	mvn verify -Pcoverage
+I risultati verranno posti nella cartella target/site/jacoco-aggregate del sottomodulo tests-coverage.
+
+Per calcolare la mutation coverage, eseguire (solo in locale):
+	mvn verify -Pmutation-coverage
+I risultati verranno posti nella cartella target/pit-reports del sottomodulo core.spring.
+
+
+
+
+*** Apache BookKeeper ***
+Per l'esecuzione corretta dei test per la classe BookKeeper, è necessario eseguirli su un O.S. Linux.
+Per compilare ed ottenere la coverage con JaCoCo:
+	mvn verify -Pcoverage
+I risultati verranno posti nella cartella target/site/jacoco-aggregate del sottomodulo tests-coverage.
+
+Per calcolare la mutation coverage, eseguire (solo in locale):
+	mvn verify -Pmutation-coverage
+I risultati verranno posti nella cartella target/pit-reports del sottomodulo bookkeeper-server.
+
+Per calcolare la coverage con ba-dua, eseguire (solo in locale):
+	mvn verify -Pba-dua
+I risultati verranno posti nella cartella target del sottomodulo bookkeeper-server.
